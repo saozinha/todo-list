@@ -1,6 +1,7 @@
 const Todo = require('./todo')
 
-Todo.methods(['get', 'post', 'put', 'delete']) // ja e a base do meu webservice 
+// envia, atualiza, recupera e remove da base ( meu webservice) 
+Todo.methods(['get', 'post', 'put', 'delete']) 
  // o update ao new true retorna o objeto atualizado
 Todo.updateOptions({new: true, runValidators: true})
 // sem a linha updateOption o update por padrao retorna o objeto antigo

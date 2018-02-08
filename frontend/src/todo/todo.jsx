@@ -6,7 +6,8 @@ import TodoForm from './todoForm'
 import TodoList from './todoList'
 import axios from 'axios'
 
-const url =  "htt://localhost:3003/api/todos"
+// nosso backend - o servidor rodando na porta 3003 - server.js
+const url =  "http://localhost:3003/api/todos"
 
 export default class Todo extends Component {
 

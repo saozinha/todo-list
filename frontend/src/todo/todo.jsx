@@ -14,34 +14,50 @@ export default class Todo extends Component {
     constructor(props) {
         super(props)
 
-        this.state = { tarefa : '', list: [] }
+        this.state = { description : '', list: [] }
 
         // realizar uma amarracao para garantir que o this é o componente atual
         this.handleChange = this.handleChange.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
+        this.handleRemove = this.handleRemove.bind(this)
+        this.refresh()
+    }
+
+    refresh() {
+        // get baseado no filtro de data - descrescente
+        axios.get(`${url}?sort=-createdAt`)
+        .then(resp => this.setState({...this.state, description: '', list: resp.data}))
     }
 
     handleChange(e) {
         // alterar o estado atual - state 
-        this.setState({...this.state, tarefa: e.target.value})
+        this.setState({...this.state, description: e.target.value})
     }
 
     handleAdd() {
-        const tarefa = this.state.tarefa
+        const description = this.state.description
         // axios - trata a api - baseado em promises
-        axios.post(url, {tarefa})
-        .then(resp => 
-            console.log('OK'))
+        axios.post(url, {description})
+        .then(resp =>  this.refresh())
+    }
+
+    handleRemove() {
+        axios.delete(`${url}/${todo._id}`)
+        .then(resp => this.refresh())
     }
 
     render() {
         return (
             <div>
                <PageHeader name='Tarefas' small='Cadastro' ></PageHeader>
-               <TodoForm tarefa={this.state.tarefa}
+               
+               <TodoForm description={this.state.description}
                          handleChange={this.handleChange}
                          handleAdd={this.handleAdd}/>
-               <TodoList />
+
+               <TodoList list={this.state.list} 
+                        handleRemove={this.handleRemove}
+                />
             </div>
         )
     }

@@ -13,7 +13,7 @@ export default props => {
                 <td>{todo.description}</td>
                 <td>
                     <IconButton style='danger' icon='trash-o' 
-                       onClick={()=> props.handleRemove(todo)}>
+                       onClick={() => props.handleRemove(todo)}>
                     </IconButton>
                 </td>
             </tr>

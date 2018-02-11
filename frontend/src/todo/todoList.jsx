@@ -9,7 +9,7 @@ export default props => {
 
         return list.map(todo => 
 
-            <tr key={todo._id}>
+            <tr key={todo._id} >
                 <td className={todo.done ? 'markAsDone': ''}>{todo.description}</td>
                 <td>
                     <IconButton style='success' icon='check' 
@@ -34,7 +34,7 @@ export default props => {
             <thead>
                 <tr>
                     <th>Minhas Tarefas </th>
-                    <th>Açoes </th>
+                    <th className='tableActions'>Açoes </th>
                 </tr>
             </thead>
             <tbody>
